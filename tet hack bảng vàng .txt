@@ -1,0 +1,49 @@
+local player = game.Players.LocalPlayer
+local playerName = player.Name -- Lấy tên người chơi
+local alias = "10M BELI" -- Giá trị mặc định
+
+-- Tạo GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Tạo bảng vàng (Frame)
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.3, 0, 0.12, 0) -- Tăng chiều cao để chứa TextBox
+frame.Position = UDim2.new(0.35, 0, 0.005, 0) -- Đặt trên cao
+frame.BackgroundColor3 = Color3.fromRGB(255, 204, 0) -- Màu vàng
+frame.BorderSizePixel = 2
+frame.Parent = screenGui
+
+-- Tạo viền đen (UIStroke)
+local stroke = Instance.new("UIStroke", frame)
+stroke.Thickness = 3
+stroke.Color = Color3.fromRGB(0, 0, 0) -- Màu đen
+
+-- Tạo dòng hiển thị tên người chơi
+local nameLabel = Instance.new("TextLabel")
+nameLabel.Size = UDim2.new(1, 0, 0.33, 0)
+nameLabel.Text = "Player: " .. playerName
+nameLabel.TextColor3 = Color3.fromRGB(0, 0, 0) -- Chữ đen
+nameLabel.BackgroundTransparency = 1
+nameLabel.Font = Enum.Font.SourceSansBold
+nameLabel.TextSize = 20
+nameLabel.Parent = frame
+
+-- Tạo TextBox để nhập Alias
+local aliasBox = Instance.new("TextBox")
+aliasBox.Size = UDim2.new(1, 0, 0.33, 0)
+aliasBox.Position = UDim2.new(0, 0, 0.33, 0)
+aliasBox.Text = alias
+aliasBox.TextColor3 = Color3.fromRGB(0, 0, 0) -- Chữ đen
+aliasBox.BackgroundColor3 = Color3.fromRGB(255, 255, 150) -- Màu nhạt hơn cho dễ nhìn
+aliasBox.Font = Enum.Font.SourceSansBold
+aliasBox.TextSize = 18
+aliasBox.ClearTextOnFocus = false -- Giữ nội dung khi bấm vào
+aliasBox.Parent = frame
+
+-- Khi nhập xong, cập nhật alias
+aliasBox.FocusLost:Connect(function(enterPressed)
+    if enterPressed then
+        alias = aliasBox.Text -- Cập nhật nội dung alias
+    end
+end)
