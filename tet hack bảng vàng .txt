@@ -1,6 +1,5 @@
 local player = game.Players.LocalPlayer
 local playerName = player.Name -- Lấy tên người chơi
-local alias = "10M BELI" -- Giá trị mặc định
 
 -- Tạo GUI
 local screenGui = Instance.new("ScreenGui")
